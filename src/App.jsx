@@ -12,7 +12,9 @@ function App() {
 
         const itemExists = cart.findIndex(guitar => guitar.id === item.id)
         if(itemExists >=0) { // existe en el carrito 
-            console.log('ya existe...')
+            const updatedCart = [...cart]
+            updatedCart[itemExists].quantity++// sumar elementos al carrito con una copia sin mutar el state
+            setCart(updatedCart)
 
         }else {
       
@@ -26,7 +28,10 @@ function App() {
     return (
       <>
 
-       <Header/>
+       <Header
+           cart={cart} 
+        
+       />
     
     <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
